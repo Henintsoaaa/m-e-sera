@@ -18,14 +18,14 @@ $id_compte = $_SESSION['id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" href="./assets/style.css"> <!-- Inclure votre fichier de style -->
+    <link rel="stylesheet" href="./assets/style/style.css"> <!-- Inclure votre fichier de style -->
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <div class="left">
-                <img src="" alt="logo">
+            <div class="left"> 
+                <p class="rname">m'E-sera</p>
             </div>
             <form class="right" action="./session/logout.php">
                 <button type="submit">Logout</button>
@@ -51,7 +51,7 @@ $id_compte = $_SESSION['id'];
     </div>
 
     <!-- Inclure le fichier JavaScript -->
-    <script src="./assets/script.js"></script>
+    <script src="./assets/script/script.js"></script>
 </body>
 
 </html>

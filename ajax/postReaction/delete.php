@@ -9,7 +9,6 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-header('Content-Type: application/json');
 
 $id_compte = $_SESSION['id'];
 

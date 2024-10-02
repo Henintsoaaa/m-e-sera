@@ -12,35 +12,26 @@ function loadComments(publicationId, user_id) {
         `comments-list-${publicationId}`
       );
       commentsListDiv.innerHTML = "";
-      data.forEach((comment) => {
-        const commentHTML = `
-          <div class="comment" id="comment-${comment.id}">
-              <h4>${comment.prenom}</h4>
-              <p>${comment.contenu}</p>
-              <div id="comment-reactions-${comment.id}">
-                  <!-- Les réactions seront chargées ici -->
-              </div>
-              <button onclick="handleCommentReaction(${
-                comment.id
-              }, 'like', ${publicationId})">J'aime</button>
-              <button onclick="handleCommentReaction(${
-                comment.id
-              }, 'dislike', ${publicationId})">Je n'aime pas</button>
-              ${
-                comment.id_compte == user_id
-                  ? `
-              <button onclick="deleteComment(${comment.id})">Supprimer</button>
-              <button onclick="editComment(${comment.id}, '${encodeURIComponent(
-                      comment.contenu
-                    )}')">Modifier</button>
-              `
-                  : ""
-              }
-          </div>
-        `;
-        commentsListDiv.innerHTML += commentHTML;
-        // loadCommentReactions(comment.id); // Charger les réactions pour chaque commentaire
-      });
+      if (data.length > 0) {
+        data.forEach((comment) => {
+          const commentHTML = `
+            <div class="comment" id="comment-${comment.id}">
+                <h4>${comment.prenom}</h4>
+                <p>${comment.contenu}</p>
+                <div id="comment-reactions-${comment.id}">
+                    <!-- Les réactions seront chargées ici -->
+                </div>
+                <button onclick="handleCommentReaction(${comment.id}, 'like', ${publicationId})">J'aime</button>
+                <button onclick="handleCommentReaction(${comment.id}, 'dislike', ${publicationId})">Je n'aime pas</button>
+              
+            </div>
+          `;
+          commentsListDiv.innerHTML += commentHTML;
+          // loadCommentReactions(comment.id); // Charger les réactions pour chaque commentaire
+        });
+      } else {
+        commentsListDiv.classList.add("hidden");
+      }
     })
     .catch((error) => {
       console.error("Erreur lors de la récupération des commentaires :", error);
@@ -99,6 +90,7 @@ function loadPosts() {
             <!-- Section des commentaires -->
             <div class="comment_section" data-post-id = "${post.id}">
                 <div id="comments-list-${post.id}" class="comments">
+
                     <!-- Les commentaires seront chargés ici -->
                 </div>
 
@@ -224,7 +216,9 @@ function createComment(element) {
 
   // Envoyer le commentaire au serveur
   fetch(
-    `./ajax/createComment.php?content=${encodeURIComponent(newCommentContent)}&id_publication=${postId}`,
+    `./ajax/createComment.php?content=${encodeURIComponent(
+      newCommentContent
+    )}&id_publication=${postId}`,
     {
       method: "GET",
       headers: {
@@ -266,17 +260,17 @@ function loadReactPub(postId) {
         const reaction = data[0]; // On suppose qu'il y a au moins une réaction et qu'on utilise la première
         if (reaction.type === "like") {
           postReactions.innerHTML = `
-            <button onclick="toggleReaction(${postId})" class="ncoeur-btn"><img src="./assets/img/heart-regular.svg" alt="!coeur" class="ncoeur"></button>
+          <button onclick="toggleReaction(${postId})" class="coeur-btn"><img src="./assets/img/heart-solid.svg" alt="coeur" class="coeur"></button>
           `;
         } else {
           postReactions.innerHTML = `
-            <button onclick="toggleReaction(${postId})" class="coeur-btn"><img src="./assets/img/heart-solid.svg" alt="coeur" class="coeur"></button>
+          <button onclick="toggleReaction(${postId})" class="ncoeur-btn"><img src="./assets/img/heart-regular.svg" alt="!coeur" class="ncoeur"></button>
           `;
         }
       } else {
         // Cas où aucune réaction n'est trouvée (par défaut, afficher le bouton 'like')
         postReactions.innerHTML = `
-          <button onclick="toggleReaction(${postId})" class="coeur-btn"><img src="./assets/img/heart-solid.svg" alt="coeur" class="coeur"></button>
+          <button onclick="toggleReaction(${postId})" class="ncoeur-btn"><img src="./assets/img/heart-regular.svg" alt="!coeur" class="ncoeur"></button>
         `;
       }
     })
@@ -306,8 +300,8 @@ function toggleReaction(postId) {
   // Envoyer la requête au serveur pour gérer la réaction
   fetch(
     isHeart
-      ? "./ajax/postReaction/delete.php"
-      : "./ajax/postReaction/create.php",
+      ? "./ajax/postReaction/create.php"
+      : "./ajax/postReaction/delete.php",
     {
       method: "POST",
       body: formData,

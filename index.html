@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="./assets/style.css"> <!-- Lien vers le fichier CSS -->
-</head>
-<body class="full-screen bg-tertiary">
-    <div class="center-screen"> 
-        <form action="./session/login.php" method="POST" class="login-form">
-            <h1 class="form-title">Connectez-vous!</h1>
-            <div class="form-group">
-                <div>
-                    <input type="text" id="username" name="prenom" placeholder="Nom d'utilisateur" required class="input-field"><br>
-                </div>
-                <div class="password-group">
-                    <input type="password" id="pass" name="password" placeholder="Mot de passe" required class="input-field">
-                    <div class="forgot-password">
-                        <a href="./session/pass.html" class="forgot-link">Mot de passe oublié ?</a><br>
-                    </div>
-                </div>
-            </div>
-            <div class="submit-section">
-                <input type="submit" value="Se connecter" class="submit-button">
-            </div>
-            <div class="form-footer">
-                <a href="./session/signup.php">Vous n'avez pas de compte ? Inscrivez-vous</a>
-            </div>
-        </form>
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <!-- Lien vers le fichier CSS -->
+  </head>
+  <body class="full-screen bg-tertiary">
+    <div class="center-screen">
+      <form action="./session/login.php" method="POST" class="login-form">
+        <h1 class="form-title">Connectez-vous!</h1>
+        <div class="form-group">
+          <div>
+            <input
+              type="text"
+              id="username"
+              name="prenom"
+              placeholder="Nom d'utilisateur"
+              required
+              class="input-field"
+            /><br />
+          </div>
+          <div class="password-group">
+            <input
+              type="password"
+              id="pass"
+              name="password"
+              placeholder="Mot de passe"
+              required
+              class="input-field"
+            />
+          </div>
+        </div>
+        <div class="submit-section">
+          <input type="submit" value="Se connecter" class="submit-button" />
+        </div>
+        <div class="form-footer">
+          <a href="./session/signup.php"
+            >Vous n'avez pas de compte ? Inscrivez-vous</a
+          >
+        </div>
+      </form>
     </div>
-</body>
+  </body>
 </html>

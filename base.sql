@@ -33,7 +33,7 @@ CREATE TABLE `comments` (
   KEY `id_compte` (`id_compte`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_publication`) REFERENCES `publication` (`id`),
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,2,1,'koooo','2024-10-02 05:26:06'),(2,2,3,'XD','2024-10-02 09:45:16'),(3,8,3,'kjh','2024-10-02 11:58:42');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +60,7 @@ CREATE TABLE `compte` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +69,7 @@ CREATE TABLE `compte` (
 
 LOCK TABLES `compte` WRITE;
 /*!40000 ALTER TABLE `compte` DISABLE KEYS */;
-INSERT INTO `compte` VALUES (1,'Mino','Henintsoa','mogla23','123@gmail.com'),(2,'Andria','Mifidy','hents45','aro@gmail.com');
+INSERT INTO `compte` VALUES (1,'Mino','Henintsoa','mogla23','123@gmail.com'),(2,'Andria','Mifidy','hents45','aro@gmail.com'),(3,'Henintsoa','Mino','123456','andiamifidyhenintsoa@gmail.com'),(4,'Lova','Tiana','789012','lova123@gmail.com'),(5,'Mana','Njara','09876','njara56@gmail.com'),(6,'Tsinjo','Nantosoa','azerty','nanto@gmail.com'),(7,'Jen','Fer','5643','jen56@gmail.com'),(8,'Jen','Fer','5678','jen56@gmail.com'),(9,'Jen','Fer','poiuy','jen56@gmail.com'),(10,'Faly','Soa','RTYUI','soa@gmail.com');
 /*!40000 ALTER TABLE `compte` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `publication` (
   PRIMARY KEY (`id`),
   KEY `id_compte` (`id_compte`),
   CONSTRAINT `publication_ibfk_1` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `publication` (
 
 LOCK TABLES `publication` WRITE;
 /*!40000 ALTER TABLE `publication` DISABLE KEYS */;
-INSERT INTO `publication` VALUES (1,2,'hello','2024-09-24 13:06:08');
+INSERT INTO `publication` VALUES (2,2,'Kaizaa','2024-09-25 07:49:53'),(3,2,'Salama oh','2024-09-25 07:50:31'),(4,3,'test','2024-10-01 07:45:23'),(5,3,'mety eh','2024-10-01 07:46:29'),(6,3,'Andrana','2024-10-01 07:53:32'),(7,3,'Efa mety ve','2024-10-01 18:39:25'),(8,3,'ary izao? ','2024-10-01 18:40:10');
 /*!40000 ALTER TABLE `publication` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,13 +141,13 @@ CREATE TABLE `reaction_pub` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_publication` int NOT NULL,
   `id_compte` int NOT NULL,
-  `type` enum('like','love','haha','wow','sad','angry') NOT NULL,
+  `type` enum('like','dislike') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_publication` (`id_publication`),
   KEY `id_compte` (`id_compte`),
   CONSTRAINT `reaction_pub_ibfk_1` FOREIGN KEY (`id_publication`) REFERENCES `publication` (`id`),
   CONSTRAINT `reaction_pub_ibfk_2` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,6 +156,7 @@ CREATE TABLE `reaction_pub` (
 
 LOCK TABLES `reaction_pub` WRITE;
 /*!40000 ALTER TABLE `reaction_pub` DISABLE KEYS */;
+INSERT INTO `reaction_pub` VALUES (1,2,1,'like'),(3,7,3,'dislike');
 /*!40000 ALTER TABLE `reaction_pub` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-24 17:05:28
+-- Dump completed on 2024-10-02 16:48:38

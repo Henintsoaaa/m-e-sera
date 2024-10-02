@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
 }
 
 $id_publication = $_POST['id_publication'];
-$id_compte = $_POST['id_compte'];
+$id_compte = $_SESSION['id'];
 $type = $_POST['type'];
 
 // Check if the user already reacted
@@ -26,7 +26,7 @@ if ($existingReaction) {
     $delete->execute();
 } else {
     // Insert new reaction
-    $sql = $pdo->prepare("INSERT INTO reaction_pub  (id_publication, id_compte, type, date) VALUES (:id_publication, :id_compte, :type, NOW())");
+    $sql = $pdo->prepare("INSERT INTO reaction_pub  (id_publication, id_compte, type) VALUES (:id_publication, :id_compte, :type)");
     $sql->bindParam(':id_publication', $id_publication);
     $sql->bindParam(':id_compte', $id_compte);
     $sql->bindParam(':type', $type);
