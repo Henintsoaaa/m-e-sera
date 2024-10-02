@@ -1,0 +1,327 @@
+/* Styles de base pour la page entière */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6; 
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+/* Style pour l'en-tête */
+.header {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #4e8cce; /* Couleur de fond de l'en-tête */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la partie gauche de l'en-tête (logo) */
+.header .left img {
+    width: 120px; /* Taille du logo */
+    height: auto; /* Garde les proportions */
+}
+
+/* Style pour la partie droite de l'en-tête (bouton de déconnexion) */
+.header .right button {
+    padding: 10px 20px;
+    /* background-color: #d45f6b; Couleur du bouton Logout */
+    color: rgb(17, 17, 17);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Effet de survol pour le bouton Logout */
+.header .right button:hover {
+    background-color: #d43f4a; /* Couleur du bouton lors du survol */
+    color: #faf6f6;
+}
+
+
+.full-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-screen {
+    width: 100%;
+    max-width: 700px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style du formulaire */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style du titre */
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style des champs de saisie */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+}
+
+/* Style du lien mot de passe oublié */
+.forgot-link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Style de la section de soumission */
+.submit-section {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Style du pied de formulaire */
+.form-footer {
+    font-size: 14px;
+    color: #666;
+}
+
+.form-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+.container{
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+/* Style du titre principal */
+h1 {
+    margin-top: 20px;
+    color: #333;
+    text-align: center;
+    
+}
+
+/* Style pour la section de création d'un nouveau post */
+#new_post_form {
+    width: 70%;
+    /* max-width: 600px; */
+    margin: 20px auto;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#new_post_form button{
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#new_post_form:focus {
+    border-color: #007bff;
+}
+
+#new_post_form textarea{
+    width: 95%;
+    height: 150px; /* Hauteur fixe pour la zone de commentaire */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px;
+    resize: none; /* Empêche le redimensionnement */
+    outline: none; /* Suppression de l'outline */
+}
+/* Style pour le textarea */
+#new_post_content {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+}
+
+#new_post_content:focus {
+    border-color: #007bff;
+}
+
+/* Style pour le bouton publier */
+#post_button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#post_button:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour la section qui affiche les posts */
+#post_list {
+    width: 70%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour chaque post individuel */
+.post {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.post:last-child {
+    border-bottom: none;
+}
+
+/* Style pour le contenu de chaque post */
+.post_content {
+    font-size: 16px;
+    color: #333;
+}
+
+.post_author {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Style de base pour la section de commentaires */
+.comment_section {
+    width: 79%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #fff; /* Couleur de fond blanche pour la section */
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la zone des commentaires */
+.comments {
+    max-height: 300px; /* Hauteur maximale pour la section des commentaires */
+    overflow-y: auto; /* Ajout d'un défilement si le contenu dépasse */
+    margin-bottom: 15px; /* Espacement en bas */
+    padding: 10px;
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px;
+    /* display: none; */
+}
+
+/* Style pour chaque commentaire individuel */
+.comment {
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* Ligne de séparation entre les commentaires */
+}
+
+.comment:last-child {
+    border-bottom: none; /* Suppression de la bordure pour le dernier commentaire */
+}
+
+/* Style pour le textarea */
+.new_comment textarea {
+    width: 95%;
+    height: 30px; /* Hauteur fixe pour la zone de commentaire */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px;
+    resize: none; /* Empêche le redimensionnement */
+    outline: none; /* Suppression de l'outline */
+}
+
+.new_comment textarea:focus {
+    border-color: #007bff; /* Changement de couleur de la bordure au focus */
+}
+
+/* Style pour le bouton de commentaire */
+.comment_button {
+    padding: 8px 6px;
+    background-color: #007bff; /* Couleur de fond bleue */
+    color: white; /* Couleur du texte */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+    width: 89px;
+}
+
+.comment_button:hover {
+    background-color: #0056b3; /* Couleur lors du survol */
+}
+.new_comment{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
