@@ -325,3 +325,99 @@ h1 {
     flex-direction: column;
     gap: 12px;
 }
+.body-container {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* Style pour le formulaire */
+.form-signup {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Style pour les groupes de champs */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style pour les labels */
+.form-label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Style pour les champs d'entrée */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Style pour le bouton d'enregistrement */
+.form-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+.coeur{
+    width:29px;
+    height: auto;
+}
+
+.coeur-btn{
+    background: none;
+    border: none;
+}
+
+.ncoeur{
+    width:29px;
+    height: auto;
+}
+
+.ncoeur-btn{
+    background: none;
+    border: none;
+}
+
+/* Style responsive pour les petits écrans */
+@media (max-width: 600px) {
+    .form-signup {
+        padding: 15px;
+    }
+
+    .form-input {
+        font-size: 12px;
+    }
+
+    .form-button {
+        font-size: 14px;
+    }
+}

@@ -46,15 +46,7 @@ function loadComments(publicationId, user_id) {
       console.error("Erreur lors de la récupération des commentaires :", error);
     });
 }
-function handleComment(element) {
-  console.log(element);
-  const postID = element
-    .closest(".comment_section")
-    .getAttribute("data-id-post");
 
-  // event.preventDefault();
-  createComment(element);
-}
 // Fonction pour charger les publications et les commentaires
 function loadPosts() {
   fetch("./ajax/post_actions.php", {
@@ -97,21 +89,20 @@ function loadPosts() {
             </div>
 
             <!-- Section des commentaires -->
-            <div class="comment_section" data-post-id = "${post.id}">
+            <div class="comment_section">
                 <div id="comments-list-${post.id}" class="comments">
                     <!-- Les commentaires seront chargés ici -->
                 </div>
 
-                <form class="new_comment" method="post" onsubmit="">
+                <form class="new_comment" methode="post" onsubmit="createComment(${
+                  post.id
+                }, event)">
                   <textarea id="comment_content_${
                     post.id
-                  }" class="comment_content_${
-            post.id
-          }" placeholder="Ajouter un commentaire..." name="content"></textarea>
+                  }" placeholder="Ajouter un commentaire..." name="content"></textarea>
                   <input type="hidden" name="post_id" value="${post.id}">
-                  <button class="comment_button" type="button" onclick="handleComment(this)">Commenter</button>
+                  <button class="comment_button" type="submit">Commenter</button>
                 </form>
-
             </div>
           `;
           postList.appendChild(postElement);
@@ -211,11 +202,11 @@ function deletePost(id) {
 }
 
 // Fonction pour créer des commentaires
-function createComment(element) {
-  let postId = element.closest(".comment_section").getAttribute("data-post-id");
-  const newCommentContent = element
-    .closest(".comment_section")
-    .querySelector(`.comment_content_${postId}`).value;
+function createComment(postId, event) {
+  event.preventDefault(); // Empêche le rechargement de la page
+  const newCommentContent = document.getElementById(
+    `comment_content_${postId}`
+  ).value;
 
   if (newCommentContent.trim() === "") {
     alert("Le contenu du commentaire ne peut pas être vide.");
@@ -223,15 +214,15 @@ function createComment(element) {
   }
 
   // Envoyer le commentaire au serveur
-  fetch(
-    `./ajax/createComment.php?content=${encodeURIComponent(newCommentContent)}&id_publication=${postId}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  )
+  fetch("./ajax/createComment.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `content=${encodeURIComponent(
+      newCommentContent
+    )}&id_publication=${postId}`,
+  })
     .then((response) => response.json())
     .then((data) => {
       if (data.status === "success") {
@@ -250,74 +241,13 @@ function createComment(element) {
 function createReactPub(postId) {}
 
 // Fonction pour lire les reactions de publication
-// Fonction pour lire les reactions de publication
 function loadReactPub(postId) {
-  console.log("tafiditra");
-
+  console.log(tafiditra);
   fetch(`./ajax/postReaction/read.php?id_publication=${postId}`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
       const postReactions = document.getElementById(`reaction-pub-${postId}`);
-
-      // Vérification si les données existent et sont valides
-      if (data.length > 0) {
-        // Récupérer le type de réaction (si nécessaire, ajouter une vérification ici)
-        const reaction = data[0]; // On suppose qu'il y a au moins une réaction et qu'on utilise la première
-        if (reaction.type === "like") {
-          postReactions.innerHTML = `
-            <button onclick="toggleReaction(${postId})" class="ncoeur-btn"><img src="./assets/img/heart-regular.svg" alt="!coeur" class="ncoeur"></button>
-          `;
-        } else {
-          postReactions.innerHTML = `
-            <button onclick="toggleReaction(${postId})" class="coeur-btn"><img src="./assets/img/heart-solid.svg" alt="coeur" class="coeur"></button>
-          `;
-        }
-      } else {
-        // Cas où aucune réaction n'est trouvée (par défaut, afficher le bouton 'like')
-        postReactions.innerHTML = `
-          <button onclick="toggleReaction(${postId})" class="coeur-btn"><img src="./assets/img/heart-solid.svg" alt="coeur" class="coeur"></button>
-        `;
-      }
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la récupération des réactions:", error);
     });
 }
 
-function toggleReaction(postId) {
-  const reactionImg = document
-    .getElementById(`reaction-pub-${postId}`)
-    .querySelector("img");
-
-  // Détecter si l'icône actuelle est un cœur ou un avion en papier
-  const isHeart = reactionImg.src.includes("/assets/img/heart-regular.svg");
-
-  // Définir la nouvelle icône en fonction de l'état actuel
-  reactionImg.src = isHeart
-    ? "./assets/img/heart-regular.svg" // Icône après suppression
-    : "./assets/img/heart-solid.svg"; // Icône après ajout
-
-  // Créer les données du formulaire à envoyer au serveur
-  const formData = new FormData();
-  formData.append("id_publication", postId);
-  formData.append("type", isHeart ? "dislike" : "like"); // Définir l'action à exécuter
-
-  // Envoyer la requête au serveur pour gérer la réaction
-  fetch(
-    isHeart
-      ? "./ajax/postReaction/delete.php"
-      : "./ajax/postReaction/create.php",
-    {
-      method: "POST",
-      body: formData,
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data.message); // Afficher le message de réponse
-    })
-    .catch((error) =>
-      console.error("Erreur lors de la gestion de la réaction:", error)
-    );
-}

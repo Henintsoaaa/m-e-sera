@@ -67,25 +67,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSCRIPTION</title>
-    <link rel="stylesheet" href="./../front/inscription.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
-    <form action="" method="post">
-        <label for="nom">Nom:</label>
-        <input type="text" name="nom" required>
-
-        <label for="prenom">Prénom:</label>
-        <input type="text" name="prenom" required>
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-
-        <label for="password">Mot de passe:</label>
-        <input type="password" name="password" required>
-
-        <button type="submit">ENREGISTRER</button>
-    </form>
+    <div class="body-container">
+        <form action="" method="post" class="form-signup">
+            <div class="form-group">
+                <label for="nom" class="form-label">Nom:</label>
+                <input type="text" name="nom" class="form-input" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="prenom" class="form-label">Prénom:</label>
+                <input type="text" name="prenom" class="form-input" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" name="email" class="form-input" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="password" class="form-label">Mot de passe:</label>
+                <input type="password" name="password" class="form-input" required>
+            </div>
+    
+            <button type="submit" class="form-button">ENREGISTRER</button>
+        </form>
+    </div>
 </body>
 
 </html>
